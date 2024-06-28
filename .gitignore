@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+.vs/
+.idea/
+build/
+cmake-build-*/
+Framework
+UVKBuildTool
+Generated/
+export.sh
+CMakeLists.txt.prodexport.fail
