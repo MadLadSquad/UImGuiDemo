@@ -36,8 +36,8 @@ jobs:
       - run: npm install -g terser
       - run: npm install -g csso-cli
       - run: npm install -g html-minifier
-      - run: for i in ./*.js; do terser $i --compress -o $i; done
-      - run: for i in ./*.css; do csso $i -o $i; done
+      - run: find ./ -type f -iname "*.js" -exec terser {} --compress -o {} \;
+      - run: find ./ -type f -iname "*.css" -exec csso {} -o {} \;
       - uses: mymindstorm/setup-emsdk@v14
       - name: Compile project
         run: |
