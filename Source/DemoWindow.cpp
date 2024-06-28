@@ -25,6 +25,7 @@ void UImGuiDemo::DemoWindow::begin()
 void UImGuiDemo::DemoWindow::tick(float deltaTime)
 {
     tickAutohandle(deltaTime);
+
     ImGui::ShowDemoWindow();
     ImPlot::ShowDemoWindow();
     UImGui::TextUtils::ShowDemoWindow();

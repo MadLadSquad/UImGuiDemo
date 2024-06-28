@@ -4,7 +4,7 @@ UImGuiDemo::Instance::Instance()
 {
     initInfo =
     {
-        .inlineComponents = { (UImGui::InlineComponent*)&demoWindow },
+        .windowComponents = { (UImGui::WindowComponent*)&demoWindow },
         UIMGUI_INIT_INFO_DEFAULT_DIRS,
     };
 }
