@@ -56,7 +56,7 @@ jobs:
         run: |
           find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\/index\.html//g' {} \;
           find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\.html//g' {} \;
-          find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\.\//https:\/\/uimgui.madladsquad.com\//g' {} \;
+          #find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\.\//https:\/\/uimgui.madladsquad.com\//g' {} \;
       - name: Copy files and clean up
         run: |
           #cp Config/WASM/index.html build/
