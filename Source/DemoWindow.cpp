@@ -8,18 +8,18 @@ UImGuiDemo::DemoWindow::DemoWindow()
 void UImGuiDemo::DemoWindow::begin()
 {
     beginAutohandle();
-    //const auto& io = ImGui::GetIO();
-//
-    //io.Fonts->AddFontDefault();
-    //static UImGui::TextUtilsData data =
-    //{
-    //    .bold = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Bold.ttf", 16.0f),
-    //    .italic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Italic.ttf", 16.0f),
-    //    .boldItalic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-BoldItalic.ttf", 16.0f),
-    //    .monospace = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"JetBrainsMono-Regular.ttf", 16.0f),
-    //    .smallFont = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Light.ttf", 13.0f),
-    //};
-    //UImGui::TextUtils::initTextUtilsData(&data);
+    const auto& io = ImGui::GetIO();
+
+    io.Fonts->AddFontDefault();
+    static UImGui::TextUtilsData data =
+    {
+        .bold = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Bold.ttf", 16.0f),
+        .italic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Italic.ttf", 16.0f),
+        .boldItalic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-BoldItalic.ttf", 16.0f),
+        .monospace = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"JetBrainsMono-Regular.ttf", 16.0f),
+        .smallFont = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Light.ttf", 13.0f),
+    };
+    UImGui::TextUtils::initTextUtilsData(&data);
 }
 
 void UImGuiDemo::DemoWindow::tick(float deltaTime)
@@ -28,7 +28,7 @@ void UImGuiDemo::DemoWindow::tick(float deltaTime)
 
     ImGui::ShowDemoWindow();
     ImPlot::ShowDemoWindow();
-    //UImGui::TextUtils::ShowDemoWindow();
+    UImGui::TextUtils::ShowDemoWindow();
 
     {
         ImGui::Begin("Spinners demo");
@@ -73,7 +73,7 @@ void UImGuiDemo::DemoWindow::tick(float deltaTime)
     }
 
     {
-        static float values[] = { 0, 0, 0, 0, 0, 0, 0 };
+        static float values[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
         ImGui::Begin("Knobs demo");
 
