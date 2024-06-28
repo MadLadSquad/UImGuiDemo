@@ -38,6 +38,7 @@ jobs:
       - run: npm install -g html-minifier
       - run: for i in ./*.js; do terser $i --compress -o $i; done
       - run: for i in ./*.css; do csso $i -o $i; done
+      - uses: mymindstorm/setup-emsdk@v14
       - name: Compile project
         run: |
           git clone https://github.com/MadLadSquad/UntitledImGuiFramework.git --recursive
