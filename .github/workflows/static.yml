@@ -50,6 +50,7 @@ jobs:
           mkdir build && cd build
           emcmake cmake .. -DCMAKE_BUILD_TYPE=RELEASE || exit
           make -j "$(grep -c processor /proc/cpuinfo)" || exit
+          mv UImGuiDemo.html index.html
           cd ../ || exit
       - name: Change URLs to production mode
         run: |
@@ -58,8 +59,8 @@ jobs:
           find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\.\//https:\/\/uimgui.madladsquad.com\//g' {} \;
       - name: Copy files and clean up
         run: |
-          cp Config/WASM/index.html build/
-          cp Config/WASM/main.css build/
+          #cp Config/WASM/index.html build/
+          #cp Config/WASM/main.css build/
           cd build || exit
           rm -rf CMake* CPack* Framework/ Makefile cmake_* test_fs_support* lib*.a compile_commands.json
       - name: Setup Pages
