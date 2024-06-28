@@ -1,0 +1,73 @@
+name: Deploy to pages
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Checkout submodules
+        shell: bash
+        run: |
+          git submodule sync --recursive
+          git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+      - run: sudo apt update && sudo apt-get install x11-xserver-utils libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev gcc make g++ libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libvulkan1 mesa-vulkan-drivers vulkan-tools libvulkan-dev libasound2-dev libflac-dev libogg-dev libtool libvorbis-dev libopus-dev libsndfile1-dev libglew-dev libssl-dev zlib1g zlib1g-dev libglfw3 libglfw3-dev libyaml-cpp-dev libxkbcommon-dev
+      - run: npm install -g terser
+      - run: npm install -g csso-cli
+      - run: npm install -g html-minifier
+      - run: for i in ./*.js; do terser $i --compress -o $i; done
+      - run: for i in ./*.css; do csso $i -o $i; done
+      - name: Compile project
+        run: |
+          git clone https://github.com/MadLadSquad/UntitledImGuiFramework.git --recursive
+          cd UntitledImGuiFramework || exit
+          ./install.sh ci || exit
+          cd UVKBuildTool/build || exit
+          ./UVKBuildTool --generate ../../../ || exit
+          cd ../../../ || exit
+          mkdir build && cd build
+          emcmake cmake .. -DCMAKE_BUILD_TYPE=RELEASE || exit
+          make -j "$(grep -c processor /proc/cpuinfo)" || exit
+          cd ../ || exit
+      - name: Change URLs to production mode
+        run: |
+          find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\/index\.html//g' {} \;
+          find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\.html//g' {} \;
+          find ./ -type f \( -iname \*.html -o -iname \*.js \) -exec sed -i 's/\.\//https:\/\/uimgui.madladsquad.com\//g' {} \;
+      - name: Copy files and clean up
+        run: |
+          cp Config/WASM/index.html build/
+          cp Config/WASM/main.css build/
+          cd build || exit
+          rm -rf CMake* CPack* Framework/ Makefile cmake_* test_fs_support* lib*.a compile_commands.json
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: './build'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
