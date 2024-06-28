@@ -8,19 +8,19 @@ UImGuiDemo::DemoWindow::DemoWindow()
 void UImGuiDemo::DemoWindow::begin()
 {
     beginAutohandle();
-    const auto& io = ImGui::GetIO();
-
-    io.Fonts->AddFontDefault();
-    static UImGui::TextUtilsData data =
-    {
-        .bold = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Bold.ttf", 16.0f),
-        .italic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Italic.ttf", 16.0f),
-        .boldItalic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-BoldItalic.ttf", 16.0f),
-        .monospace = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"JetBrainsMono-Regular.ttf", 16.0f),
-        .smallFont = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Light.ttf", 13.0f),
-    };
-    UImGui::TextUtils::initTextUtilsData(&data);
-    std::cout << "Loaded fonts" << std::endl;
+//const auto& io = ImGui::GetIO();
+//
+    //io.Fonts->AddFontDefault();
+//static UImGui::TextUtilsData data =
+//{
+//    .bold = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Bold.ttf", 16.0f),
+//    .italic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Italic.ttf", 16.0f),
+//    .boldItalic = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-BoldItalic.ttf", 16.0f),
+//    .monospace = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"JetBrainsMono-Regular.ttf", 16.0f),
+//    .smallFont = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Light.ttf", 13.0f),
+//};
+//UImGui::TextUtils::initTextUtilsData(&data);
+//std::cout << "Loaded fonts" << std::endl;
 }
 
 void UImGuiDemo::DemoWindow::tick(float deltaTime)
@@ -31,8 +31,8 @@ void UImGuiDemo::DemoWindow::tick(float deltaTime)
     std::cout << "Loaded imgui demo window" << std::endl;
     ImPlot::ShowDemoWindow();
     std::cout << "Loaded implot demo window" << std::endl;
-    UImGui::TextUtils::ShowDemoWindow();
-    std::cout << "Loaded text utils demo window" << std::endl;
+    //UImGui::TextUtils::ShowDemoWindow();
+    //std::cout << "Loaded text utils demo window" << std::endl;
 
     {
         ImGui::Begin("Spinners demo");
