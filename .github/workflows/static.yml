@@ -51,7 +51,7 @@ jobs:
           emcmake cmake .. -DCMAKE_BUILD_TYPE=RELEASE || exit
           make -j "$(grep -c processor /proc/cpuinfo)" || exit
           mv UImGuiDemo.html index.html
-          mv Config/WASM/* .
+          mv ../Config/WASM/* .
           cd ../ || exit
       - name: Copy files and clean up
         run: |
