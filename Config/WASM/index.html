@@ -3,14 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A showcase of the capabilities of the UntitledImGuiFramework">
+        <meta name="author" content="MadLadSquad">
+        <meta name="keywords" content="imgui,dear imgui,implot,madladsquad,MadLadSquad,Dear ImGui,Dear imgui,ImGui,IMGUI,DEAR IMGUI,ImPlot,imspinner,ImSpinner,ImGuiToggles,imguitoggles,ImKnobs,imknobs">
+
         <title>UntitledImGuiFramework Demo</title>
+
+        <link rel="icon" type="image/png" href="./favicon.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="./main.css" type="text/css">
     </head>
     <body>
         <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 
         <script type='text/javascript'>
+            function $(x) { return document.getElementById(x) }
             var Module = {
-                canvas: (function() { return document.getElementById('canvas'); })()
+                canvas: (function() { return $('canvas'); })()
             };
         </script>
         <script src="./UImGuiDemo.js"></script>
