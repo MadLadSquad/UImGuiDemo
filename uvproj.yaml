@@ -14,10 +14,10 @@ enabled-modules:
   ufont: false
   i18n: false
   undo-redo: false
-  plotting: false
-  knobs: false
-  spinners: false
-  toggles: false
-  text-utils: false
+  plotting: on
+  knobs: on
+  spinners: on
+  toggles: on
+  text-utils: on
   cli-parser: false
   xdg: false
