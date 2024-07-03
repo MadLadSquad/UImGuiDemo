@@ -2,6 +2,8 @@ name: Deploy to pages
 on:
   push:
     branches: ["master"]
+  schedule:
+    - cron: "0 0 * * *"
   workflow_dispatch:
 
 permissions:
