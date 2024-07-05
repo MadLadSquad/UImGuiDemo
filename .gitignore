@@ -39,4 +39,4 @@ Framework
 UVKBuildTool
 Generated/
 export.sh
-CMakeLists.txt.prodexport.fail
+CMakeLists.txt*
