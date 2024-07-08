@@ -22,11 +22,9 @@ void UImGuiDemo::DemoWindow::begin()
     UImGui::TextUtils::initTextUtilsData(&data);
 }
 
-void UImGuiDemo::DemoWindow::tick(float deltaTime)
+void UImGuiDemo::DemoWindow::tick(const float deltaTime)
 {
     tickAutohandle(deltaTime);
-
-    //std::cout << "HELLO" << std::endl;
 
     ImGui::ShowDemoWindow();
     ImPlot::ShowDemoWindow();

@@ -4,7 +4,7 @@
 
 namespace UImGuiDemo 
 {
-    class UIMGUI_PUBLIC_API DemoWindow : public UImGui::WindowComponent
+    class UIMGUI_PUBLIC_API DemoWindow final : public UImGui::WindowComponent
     {
     public:
         DemoWindow();
@@ -13,6 +13,5 @@ namespace UImGuiDemo
         virtual void end() override;
         virtual ~DemoWindow() override;
     private:
-
     };
 }
