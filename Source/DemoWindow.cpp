@@ -77,19 +77,19 @@ void UImGuiDemo::DemoWindow::tick(const float deltaTime)
 
         ImGui::Begin("Knobs demo");
 
-        ImGuiKnobs::Knob("Tick",        &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Tick       )))],    0.0f, 100.0f, 0, nullptr, ImGuiKnobVariant_Tick     );
+        ImGuiKnobs::Knob("Tick",        &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Tick       )))],    0.0f, 100.0f, 0, "%.3f", ImGuiKnobVariant_Tick     );
         ImGui::SameLine();
-        ImGuiKnobs::Knob("Dot",         &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Dot        )))],    0.0f, 100.0f, 0, nullptr, ImGuiKnobVariant_Dot      );
+        ImGuiKnobs::Knob("Dot",         &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Dot        )))],    0.0f, 100.0f, 0, "%.3f", ImGuiKnobVariant_Dot      );
         ImGui::SameLine();
-        ImGuiKnobs::Knob("Wiper",       &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Wiper      )))],    0.0f, 100.0f, 0, nullptr, ImGuiKnobVariant_Wiper    );
+        ImGuiKnobs::Knob("Wiper",       &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Wiper      )))],    0.0f, 100.0f, 0, "%.3f", ImGuiKnobVariant_Wiper    );
         ImGui::SameLine();
-        ImGuiKnobs::Knob("WiperOnly",   &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_WiperOnly  )))],    0.0f, 100.0f, 0, nullptr, ImGuiKnobVariant_WiperOnly);
+        ImGuiKnobs::Knob("WiperOnly",   &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_WiperOnly  )))],    0.0f, 100.0f, 0, "%.3f", ImGuiKnobVariant_WiperOnly);
         ImGui::SameLine();
-        ImGuiKnobs::Knob("WiperDot",    &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_WiperDot   )))],    0.0f, 100.0f, 0, nullptr, ImGuiKnobVariant_WiperDot );
+        ImGuiKnobs::Knob("WiperDot",    &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_WiperDot   )))],    0.0f, 100.0f, 0, "%.3f", ImGuiKnobVariant_WiperDot );
         ImGui::SameLine();
-        ImGuiKnobs::Knob("Stepped",     &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Stepped    )))],    0.0f, 100.0f, 0, nullptr, ImGuiKnobVariant_Stepped  );
+        ImGuiKnobs::Knob("Stepped",     &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Stepped    )))],    0.0f, 100.0f, 0, "%.3f", ImGuiKnobVariant_Stepped  );
         ImGui::SameLine();
-        ImGuiKnobs::Knob("Space",       &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Space      )))],    0.0f, 100.0f, 0, nullptr, ImGuiKnobVariant_Space    );
+        ImGuiKnobs::Knob("Space",       &values[static_cast<int>(log2(static_cast<double>(ImGuiKnobVariant_Space      )))],    0.0f, 100.0f, 0, "%.3f", ImGuiKnobVariant_Space    );
 
         ImGui::End();
     }
