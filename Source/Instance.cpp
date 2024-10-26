@@ -1,6 +1,6 @@
 #include "Instance.hpp"
 
-UImGuiDemo::Instance::Instance()
+UImGuiDemo::Instance::Instance() noexcept
 {
     initInfo =
     {
@@ -9,30 +9,25 @@ UImGuiDemo::Instance::Instance()
     };
 }
 
-void UImGuiDemo::Instance::begin()
+void UImGuiDemo::Instance::begin() noexcept
 {
     beginAutohandle();
 
 }
 
-void UImGuiDemo::Instance::tick(float deltaTime)
+void UImGuiDemo::Instance::tick(const float deltaTime) noexcept
 {
     tickAutohandle(deltaTime);
 
 }
 
-void UImGuiDemo::Instance::end()
+void UImGuiDemo::Instance::end() noexcept
 {
     endAutohandle();
 
 }
 
-UImGuiDemo::Instance::~Instance()
-{
-
-}
-
-void UImGuiDemo::Instance::onEventConfigureStyle(ImGuiStyle& style, ImGuiIO& io)
+void UImGuiDemo::Instance::onEventConfigureStyle(ImGuiStyle& style, ImGuiIO& io) noexcept
 {
 
 }

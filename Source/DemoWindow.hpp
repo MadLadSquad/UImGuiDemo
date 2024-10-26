@@ -7,11 +7,11 @@ namespace UImGuiDemo
     class UIMGUI_PUBLIC_API DemoWindow final : public UImGui::WindowComponent
     {
     public:
-        DemoWindow();
-        virtual void begin() override;
-        virtual void tick(float deltaTime) override;
-        virtual void end() override;
-        virtual ~DemoWindow() override;
+        DemoWindow() noexcept;
+        virtual void begin() noexcept override;
+        virtual void tick(float deltaTime) noexcept override;
+        virtual void end() noexcept override;
+        virtual ~DemoWindow() noexcept override = default;
     private:
     };
 }

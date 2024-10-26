@@ -1,11 +1,11 @@
 #include "DemoWindow.hpp"
 
-UImGuiDemo::DemoWindow::DemoWindow()
+UImGuiDemo::DemoWindow::DemoWindow() noexcept
 {
 
 }
 
-void UImGuiDemo::DemoWindow::begin()
+void UImGuiDemo::DemoWindow::begin() noexcept
 {
     beginAutohandle();
     const auto& io = ImGui::GetIO();
@@ -22,7 +22,7 @@ void UImGuiDemo::DemoWindow::begin()
     UImGui::TextUtils::initTextUtilsData(&data);
 }
 
-void UImGuiDemo::DemoWindow::tick(const float deltaTime)
+void UImGuiDemo::DemoWindow::tick(const float deltaTime) noexcept
 {
     tickAutohandle(deltaTime);
 
@@ -95,13 +95,8 @@ void UImGuiDemo::DemoWindow::tick(const float deltaTime)
     }
 }
 
-void UImGuiDemo::DemoWindow::end()
+void UImGuiDemo::DemoWindow::end() noexcept
 {
     endAutohandle();
-
-}
-
-UImGuiDemo::DemoWindow::~DemoWindow()
-{
 
 }

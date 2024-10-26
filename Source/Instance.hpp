@@ -5,16 +5,16 @@
 
 namespace UImGuiDemo
 {
-    class UIMGUI_PUBLIC_API Instance : public UImGui::Instance
+    class UIMGUI_PUBLIC_API Instance final : public UImGui::Instance
     {
     public:
-        Instance();
-        virtual void begin() override;
-        virtual void tick(float deltaTime) override;
-        virtual void end() override;
-        virtual ~Instance() override;
+        Instance() noexcept;
+        virtual void begin() noexcept override;
+        virtual void tick(float deltaTime) noexcept override;
+        virtual void end() noexcept override;
+        virtual ~Instance() noexcept override = default;
 
-        virtual void onEventConfigureStyle(ImGuiStyle& style, ImGuiIO& io) override;
+        virtual void onEventConfigureStyle(ImGuiStyle& style, ImGuiIO& io) noexcept override;
     private:
         DemoWindow demoWindow{};
     };
