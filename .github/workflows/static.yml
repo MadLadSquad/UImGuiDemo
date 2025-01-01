@@ -41,6 +41,7 @@ jobs:
       - run: find ./ -type f -iname "*.js" -exec terser {} --compress -o {} \;
       - run: find ./ -type f -iname "*.css" -exec csso {} -o {} \;
       - uses: mymindstorm/setup-emsdk@v14
+      - run: "emcc -v"
       - name: Compile project
         run: |
           git clone https://github.com/MadLadSquad/UntitledImGuiFramework.git --recursive

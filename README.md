@@ -7,4 +7,5 @@
 A web demo of the [UntitledImGuiFramework](https://github.com/MadLadSquad/UntitledImGuiFramework). Currently deployed at <https://uimgui.madladsquad.com>.
 
 ## Install
-This is a standard [UntitledImGuiFramework](https://github.com/MadLadSquad/UntitledImGuiFramework) WASM project. More info on compiling and installing can be found [here]().
+This is a standard [UntitledImGuiFramework](https://github.com/MadLadSquad/UntitledImGuiFramework) WASM project. More info on compiling and installing can be found 
+[here](https://github.com/MadLadSquad/UntitledImGuiFramework/wiki/Targeting-WASM).
