@@ -20,6 +20,8 @@ void UImGuiDemo::DemoWindow::begin() noexcept
         .smallFont = io.Fonts->AddFontFromFileTTF(UIMGUI_CONTENT_DIR"Ubuntu-Light.ttf", 13.0f),
     };
     UImGui::TextUtils::initTextUtilsData(&data);
+    tex.init(UIMGUI_CONTENT_DIR"example-icon.png");
+    tex.load();
 }
 
 void UImGuiDemo::DemoWindow::tick(const float deltaTime) noexcept
