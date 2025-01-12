@@ -13,6 +13,5 @@ namespace UImGuiDemo
         virtual void end() noexcept override;
         virtual ~DemoWindow() noexcept override = default;
     private:
-        UImGui::Texture tex;
     };
 }
