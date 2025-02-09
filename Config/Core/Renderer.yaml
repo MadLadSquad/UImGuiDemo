@@ -1,3 +1,6 @@
-vulkan: true                  # The Vulkan renderer is not yet implemented
-v-sync: true                 # To run or not to run in V-Sync mode
+vulkan: true                  # Enables Vulkan/WebGPU renderers
+v-sync: true                  # To run or not to run in V-Sync mode
 msaa-samples: 16              # Multisampling sample count
+power-saving:                 # The power saving mode limits the number of frames that are drawn when idling. Will not work for applications with live plots or animations
+  enabled: false
+  idle-frames: 5              # The number of frames to output while idling
