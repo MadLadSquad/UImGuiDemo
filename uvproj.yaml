@@ -11,7 +11,6 @@ enabled-modules:
   dbus: false
   uexec: false
   theming: false
-  ufont: false
   i18n: false
   undo-redo: false
   plotting: true
