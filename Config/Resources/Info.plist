@@ -13,10 +13,10 @@
     <string>com.madladsquad.UImGuiDemo</string>
 
     <key>CFBundleVersion</key>
-    <string>1.0</string>
+    <string>1.6.0.0</string>
 
     <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
+    <string>1.6.0.0</string>
 
     <!-- Executable -->
     <key>CFBundleExecutable</key>
@@ -40,6 +40,9 @@
     <!-- Application Category -->
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.utilities</string>
+
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright (c) 2024 - 2025 MadLadSquad</string>
 
     <!-- Security Configuration -->
     <key>NSAppTransportSecurity</key>

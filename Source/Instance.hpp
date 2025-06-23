@@ -2,6 +2,7 @@
 #include <Framework.hpp>
 #include <Generated/Config.hpp>
 #include <DemoWindow.hpp>
+#include <Title.hpp>
 
 namespace UImGuiDemo
 {
@@ -17,5 +18,6 @@ namespace UImGuiDemo
         virtual void onEventConfigureStyle(ImGuiStyle& style, ImGuiIO& io) noexcept override;
     private:
         DemoWindow demoWindow{};
+        Title title{};
     };
 }

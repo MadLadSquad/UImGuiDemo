@@ -5,6 +5,7 @@ UImGuiDemo::Instance::Instance() noexcept
     initInfo =
     {
         .windowComponents = { reinterpret_cast<UImGui::WindowComponent*>(&demoWindow) },
+        .titlebarComponents = { reinterpret_cast<UImGui::TitlebarComponent*>(&title) },
         UIMGUI_INIT_INFO_DEFAULT_DIRS,
     };
 }
