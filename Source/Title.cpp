@@ -14,6 +14,9 @@ void UImGuiDemo::Title::begin()
     .addSubmenu("", UImGui::TitlebarBuilder{}
         .addAppMenuDefaultItems()
     )
+    .addSubmenu("Edit", UImGui::TitlebarBuilder{}
+        .addEditMenuDefaultItems()
+    )
     .addSubmenu("Window", UImGui::TitlebarBuilder{}
         .addWindowMenuDefaultItems()
     )
