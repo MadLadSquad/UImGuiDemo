@@ -43,4 +43,5 @@ CMakeLists.txt*
 Exported/
 .DS_Store
 *.aps
-Source/UImGuiBgfx
+Source/UImGuiRendererExamples
+bgfx.cmake/
