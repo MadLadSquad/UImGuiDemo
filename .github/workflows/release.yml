@@ -24,7 +24,14 @@ jobs:
         shell: bash
         id: mod
         run: |
+          git config --global user.name "Madman10K"
+          git config --global user.email "contact@madladsquad.com"
+          git fetch --all
           tag="${{ github.ref_name }}"
+
+          sed -i "s/set(APP_VERSION.*/set(APP_VERSION \"${tag:1}\")/g" Config/cmake/UImGuiDemo.cmake
+          (git add . && git commit -m "Automatically bump version" && git push origin HEAD:master) || echo "Nothing to commit"
+          
           echo "out=uimgui-demo-${tag:1}" >> $GITHUB_OUTPUT
       - name: Create archive
         shell: bash
