@@ -61,7 +61,7 @@ jobs:
           cd build || exit
           rm -rf CMake* CPack* Framework/ Makefile cmake_* test_fs_support* lib*.a compile_commands.json
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
@@ -69,4 +69,4 @@ jobs:
           path: './build'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
