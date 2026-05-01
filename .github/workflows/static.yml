@@ -40,7 +40,7 @@ jobs:
       - run: npm install -g html-minifier
       - run: find ./ -type f -iname "*.js" -exec terser {} --compress -o {} \;
       - run: find ./ -type f -iname "*.css" -exec csso {} -o {} \;
-      - uses: mymindstorm/setup-emsdk@v14
+      - uses: mymindstorm/setup-emsdk@v16
       - run: "emcc -v"
       - name: Compile project
         run: |
@@ -63,7 +63,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v6
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           # Upload entire repository
           path: './build'
