@@ -45,3 +45,6 @@ Exported/
 *.aps
 Source/UImGuiRendererExamples
 bgfx.cmake/
+.claude/
+.agents/
+graphify-out/

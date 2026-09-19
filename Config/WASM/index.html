@@ -17,16 +17,64 @@
         <link rel="stylesheet" href="./main.css" type="text/css">
     </head>
     <body>
-        <p id="overlay">Loading...</p>
+        <div id="privacy-popup" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
+            <div id="privacy-card">
+                <h2 id="privacy-title">Privacy notice</h2>
+                <p>
+                    Before the demo loads, please take a moment to read our
+                    <a href="https://madladsquad.com/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+                    By continuing, you agree to its terms.
+                </p>
+                <button id="privacy-accept" type="button">Continue</button>
+            </div>
+        </div>
+        <p id="overlay" hidden>Loading...</p>
         <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+        <footer id="footer" hidden>
+            Copyright &copy; Heapforge Ltd. 2024 - 2026.
+            <a href="https://madladsquad.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy policy</a>.
+        </footer>
 
         <script type='text/javascript'>
             function $(x) { return document.getElementById(x) }
+
+            // Only show the footer when the page is not embedded in an iframe. Accessing window.top can throw for
+            // cross-origin parents, which also means we are embedded. This runs before the WASM module loads, so the
+            // canvas already has its final CSS size when the framework first reads it.
+            var bEmbedded = true;
+            try { bEmbedded = window.self !== window.top; } catch (e) {}
+            if (!bEmbedded)
+                $('footer').hidden = false;
+
             var Module = {
                 canvas: (() => { return $('canvas'); })(),
-                onRuntimeInitialized: () => { $('overlay').style.display = 'none'; },
+                onRuntimeInitialized: () => { $('overlay').hidden = true; },
             };
+
+            function loadDemo()
+            {
+                $('privacy-popup').hidden = true;
+                $('overlay').hidden = false;
+
+                var script = document.createElement('script');
+                script.src = './UImGuiDemo.js';
+                document.body.appendChild(script);
+            }
+
+            var bAccepted = false;
+            try { bAccepted = localStorage.getItem('privacy-accepted') === '1'; } catch (e) {}
+
+            if (bAccepted)
+                loadDemo();
+            else
+            {
+                $('privacy-popup').hidden = false;
+                $('privacy-accept').focus();
+                $('privacy-accept').addEventListener('click', () => {
+                    try { localStorage.setItem('privacy-accepted', '1'); } catch (e) {}
+                    loadDemo();
+                }, { once: true });
+            }
         </script>
-	<script src="./UImGuiDemo.js"></script>
     </body>
 </html>
