@@ -1,4 +1,4 @@
-name: Deploy to pages
+name: Deploy to Cloudflare Pages
 on:
   push:
     branches: ["master"]
@@ -8,18 +8,16 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "cloudflare-pages"
   cancel-in-progress: true
 
 jobs:
   deploy:
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: cloudflare-pages
+      url: ${{ steps.deployment.outputs.deployment-url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,7 +31,7 @@ jobs:
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
       - uses: actions/setup-node@v7
         with:
-          node-version: '16'
+          node-version: '22'
       - run: sudo apt update && sudo apt-get install x11-xserver-utils libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev gcc make g++ libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libvulkan1 mesa-vulkan-drivers vulkan-tools libvulkan-dev libasound2-dev libflac-dev libogg-dev libtool libvorbis-dev libopus-dev libsndfile1-dev libglew-dev libssl-dev zlib1g zlib1g-dev libglfw3 libglfw3-dev libyaml-cpp-dev libxkbcommon-dev
       - run: npm install -g terser
       - run: npm install -g csso-cli
@@ -60,13 +58,10 @@ jobs:
         run: |
           cd build || exit
           rm -rf CMake* CPack* Framework/ Makefile cmake_* test_fs_support* lib*.a compile_commands.json
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          # Upload entire repository
-          path: './build'
-      - name: Deploy to GitHub Pages
+      - name: Deploy to Cloudflare Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_UIMGUI_DEMO_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_WORKERS_ACCOUNT_ID }}
+          command: pages deploy ./build --project-name='uimgui-demo' --branch=${{ github.ref_name }}

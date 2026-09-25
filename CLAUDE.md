@@ -40,7 +40,7 @@ The project has no tests and no linter.
 
 ## CI / release
 
-- **`static.yml`** deploys to GitHub Pages on every push to `master`, nightly, and on manual dispatch. It clones the **latest framework `master`** instead of a pinned version, so the demo must keep compiling against framework HEAD. A breaking framework API change shows up here as a nightly deploy failure.
+- **`static.yml`** deploys to Cloudflare Pages (via `cloudflare/wrangler-action`, using the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets and an optional `CLOUDFLARE_PROJECT_NAME` variable, default `uimgui-demo`) on every push to `master`, nightly, and on manual dispatch. It clones the **latest framework `master`** instead of a pinned version, so the demo must keep compiling against framework HEAD. A breaking framework API change shows up here as a nightly deploy failure.
 - **`release.yml`** runs on `v*` tags. It rewrites `set(APP_VERSION ...)` in `Config/cmake/UImGuiDemo.cmake` from the tag, commits the change back to `master`, and publishes a source tarball. Bump the version by tagging, not by hand. The `version:` field in `uvproj.yaml` is not what gets bumped.
 
 ## Application structure

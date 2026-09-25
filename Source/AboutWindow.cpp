@@ -1,7 +1,5 @@
 #include "AboutWindow.hpp"
 
-#include "../../UntitledDEPolkitAgent/Framework/Core/Interfaces/LayoutsInterface.hpp"
-
 // Horizontally centres the next widget of the given width inside the current window
 static void centreNext(const float width) noexcept
 {
