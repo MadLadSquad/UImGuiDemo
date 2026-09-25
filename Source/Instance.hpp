@@ -3,6 +3,7 @@
 #include <Generated/Config.hpp>
 #include <DemoWindow.hpp>
 #include <Title.hpp>
+#include <AboutWindow.hpp>
 
 namespace UImGuiDemo
 {
@@ -19,5 +20,6 @@ namespace UImGuiDemo
     private:
         DemoWindow demoWindow{};
         Title title{};
+        AboutWindow aboutWindow{};
     };
 }
