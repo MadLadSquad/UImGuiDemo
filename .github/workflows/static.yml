@@ -64,4 +64,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_UIMGUI_DEMO_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_WORKERS_ACCOUNT_ID }}
-          command: pages deploy ./build --project-name='uimgui-demo' --branch=${{ github.ref_name }}
+          command: pages deploy ./build --project-name=uimguidemo
