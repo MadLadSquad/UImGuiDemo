@@ -10,7 +10,7 @@ WASM is the primary target. Native builds work too, but CI only builds and deplo
 
 ## What is tracked vs. generated
 
-Only `Source/`, `Config/`, `uvproj.yaml` and `.github/` are committed. The following are gitignored and must not be committed or hand-edited:
+Only `Source/`, `Config/`, `uvproj.yaml`, `cloudflare-build.sh` and `.github/` are committed. The following are gitignored and must not be committed or hand-edited:
 
 - `Framework`, `UVKBuildTool`: symlinks to the enclosing framework checkout.
 - `Generated/`, `CMakeLists.txt`, `export.sh`: produced by UVKBuildTool.
@@ -25,14 +25,14 @@ After changing `uvproj.yaml` (for example, toggling modules), regenerate the bui
 cd UVKBuildTool/build && ./UVKBuildTool --generate ../../Projects/UImGuiDemo
 ```
 
-WASM build (this matches CI in `.github/workflows/static.yml`):
+WASM build (the manual equivalent of `cloudflare-build.sh`):
 ```bash
 mkdir -p build && cd build
 emcmake cmake .. -DCMAKE_BUILD_TYPE=RELEASE
 make -j$(nproc)
 emrun UImGuiDemo.html
 ```
-CI then renames `UImGuiDemo.html` to `index.html` and copies `Config/WASM/*` (the custom `index.html`, `main.css`, `favicon.png`, `pre.js`, `post.js`) next to it. `ENABLE_PRE_SCRIPT`/`ENABLE_POST_SCRIPT` are turned on in `Config/cmake/UImGuiDemo.cmake`.
+For deployment, `cloudflare-build.sh` drops the generated `UImGuiDemo.html` and copies `Config/WASM/*` (the custom `index.html`, `main.css`, `favicon.png`, `pre.js`, `post.js`) next to the build output in `dist/`. `ENABLE_PRE_SCRIPT`/`ENABLE_POST_SCRIPT` are turned on in `Config/cmake/UImGuiDemo.cmake`.
 
 Native build: use the same steps with plain `cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE`.
 
@@ -40,7 +40,7 @@ The project has no tests and no linter.
 
 ## CI / release
 
-- **`static.yml`** deploys to Cloudflare Pages (via `cloudflare/wrangler-action`, using the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets and an optional `CLOUDFLARE_PROJECT_NAME` variable, default `uimgui-demo`) on every push to `master`, nightly, and on manual dispatch. It clones the **latest framework `master`** instead of a pinned version, so the demo must keep compiling against framework HEAD. A breaking framework API change shows up here as a nightly deploy failure.
+- **Cloudflare Pages** builds and deploys the site through its Git integration: build command `./cloudflare-build.sh`, output directory `dist`. The script installs emsdk (and CMake, if missing), clones the **latest framework `master`** instead of a pinned version, builds the WASM target in `build-wasm/` and assembles `dist/`. Because it tracks framework HEAD, a breaking framework API change shows up as a failed Cloudflare build. `build-wasm/`, `dist/`, `.emsdk/` and `UntitledImGuiFramework/` are gitignored script outputs.
 - **`release.yml`** runs on `v*` tags. It rewrites `set(APP_VERSION ...)` in `Config/cmake/UImGuiDemo.cmake` from the tag, commits the change back to `master`, and publishes a source tarball. Bump the version by tagging, not by hand. The `version:` field in `uvproj.yaml` is not what gets bumped.
 
 ## Application structure

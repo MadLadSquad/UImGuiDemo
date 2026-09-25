@@ -1,0 +1,9 @@
+{
+  // Static-assets-only Worker: no server code, `public/` is served directly.
+  // `hugo --gc --minify` must run before `wrangler deploy` (it is the build command).
+  "name": "imgui-demo",
+  "compatibility_date": "2026-06-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
