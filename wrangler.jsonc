@@ -3,7 +3,11 @@
   // `hugo --gc --minify` must run before `wrangler deploy` (it is the build command).
   "name": "uimgui-demo",
   "compatibility_date": "2026-06-01",
+  "main": "index.ts",
   "assets": {
     "directory": "./dist"
+  },
+  "triggers": {
+    "crons": ["0 0 * * *"]
   }
 }
